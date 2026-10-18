@@ -67,7 +67,7 @@ plugin_manager install_bundle target=D:\ai aegit\deepseek\dsh-work-habits
 进程重启**——热装那一刻的扫描结果里，本包被判为「非客户端模块」，这个否定结论会一直留在缓存里，
 所以那一行会**永久漏掉**，不会因为等待或刷新页面而补上。
 
-> 备注：README.md 第 119 行写的是「装完需要刷新一次页面」。按实测，刷新页面**不足以**让页面出现，
+> 备注：README.md 第 121 行写的是「装完需要刷新一次页面」。按实测，刷新页面**不足以**让页面出现，
 > 必须重启宿主。以本文为准。
 
 重启后确认路径：
@@ -605,7 +605,7 @@ Invoke-RestMethod -Method Post -Uri "$base/state" `
 plugin_manager remove_bundle target=dsh-work-habits
 ```
 
-- **不会删除** `$DSH_HOME/work-habits.json`，你的规则留着（`README.md:127`）。
+- **不会删除** `$DSH_HOME/work-habits.json`，你的规则留着（`README.md:129`）。
 - 卸载后「工作习惯」页消失，system prompt 里不再有 `work-habits:profile` section。
 - 想彻底清干净：先卸载，再手动删除 `$DSH_HOME/work-habits.json`（以及可能残留的
   `work-habits.json.tmp`）。
