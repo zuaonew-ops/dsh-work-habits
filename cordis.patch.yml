@@ -1,0 +1,28 @@
+# dsh-work-habits bundle patch
+#
+# 本 bundle 贡献一条宿主行（`index.js`）和它的浏览器半区（`client.js`，
+# 经 package.json 的 `dsh.client` 声明加载）。宿主行做三件事：
+#   1. 持有习惯状态并持久化到 $DSH_HOME/work-habits.json
+#   2. 把状态渲染成 system prompt 的一个 section
+#   3. 通过 /work-habits/state 路由把状态开放给设置页
+#
+# 这里只出现 `insert`，绝不覆写 DSH 已发布的任何行。本行的 `config` 留空，
+# 需要调参时在 profile 的 `cordis.patch.yml` 里覆写同名 id 的行
+# （注意：patch 是**整行替换** config，所以覆写时要写全你想保留的字段）。
+#
+# 可调项（都只在**首次运行播种**时起作用，之后以设置页里的内容为准）：
+#   enabled        boolean，默认 true；false 则整行不挂载
+#   order          number，section 排序位，默认 650
+#                  （位于 TEAM_POLICY=600 与 PTC_ONLY=800 之间）
+#   pluginSuffix   string，自写插件后缀，默认 "-zuao"
+#   internalPrefix string，临时/内部产物前缀，默认 "_"
+#   extra          string，补充约束的初始值，默认 ""
+#   storePath      string，状态文件绝对路径；留空用 $DSH_HOME/work-habits.json
+#
+# 软依赖：`systemPrompt`（注册 section）与 `webServer`（设置页数据路由）
+# 都用 `ctx.inject` 挂载。缺哪一个就少哪一项能力，不会加载失败。
+
+- insert:
+    - id: work-habits
+      name: 'dsh-work-habits'
+      config: {}
