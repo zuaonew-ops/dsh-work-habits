@@ -118,7 +118,10 @@ POST /work-habits/state   → 200 {ok:true, value:{...}} | 400 {ok:false, error:
 plugin_manager install_bundle target=D:\ai aegit\deepseek\dsh-work-habits
 ```
 
-浏览器半区是新的客户端模块，**装完需要刷新一次页面**才能在设置里看到那一页。
+浏览器半区是新的客户端模块。**装完必须重启一次 DSH 宿主**，设置面板左侧才会出现
+「工作习惯」那一页 —— **刷新页面不够**：宿主对客户端模块的扫描是增量的，而且
+「不是客户端包」的否定结论会缓存到进程重启，热装上去的那一行会永久漏掉。
+详见 [docs/USAGE.md](docs/USAGE.md) §2.2。
 
 ## 卸载
 
